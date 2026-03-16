@@ -186,7 +186,7 @@ class _BetterPlayerCupertinoControlsState
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      const SizedBox(width: 8),
+                      //const SizedBox(width: 8),
                       if (_controlsConfiguration.enablePlayPause)
                         _buildPlayPause(_controller!, iconColor, barHeight)
                       else
