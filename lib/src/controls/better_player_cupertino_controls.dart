@@ -100,6 +100,7 @@ class _BetterPlayerCupertinoControlsState
         backgroundColor,
         iconColor,
         barHeight,
+        buttonPadding,
       ),
     ]);
     return GestureDetector(
@@ -162,6 +163,7 @@ class _BetterPlayerCupertinoControlsState
     Color backgroundColor,
     Color iconColor,
     double barHeight,
+    double buttonPadding,
   ) {
     if (!betterPlayerController!.controlsEnabled) {
       return const SizedBox();
@@ -190,7 +192,17 @@ class _BetterPlayerCupertinoControlsState
                       else
                         const SizedBox(),
                       const SizedBox(width: 8),
-                      _buildLiveWidget(),
+                      //_buildLiveWidget(),
+                      if (_controlsConfiguration.enableFullscreen)
+                        _buildExpandButton(
+                          backgroundColor,
+                          iconColor,
+                          barHeight,
+                          30,
+                          buttonPadding,
+                        )
+                      else
+                        const SizedBox(),
                     ],
                   )
                 : Row(
@@ -227,9 +239,9 @@ class _BetterPlayerCupertinoControlsState
     );
   }
 
-  Widget _buildLiveWidget() {
-    return SizedBox();
-  }
+  // Widget _buildLiveWidget() {
+  //   return SizedBox();
+  // }
 
   GestureDetector _buildExpandButton(
     Color backgroundColor,
@@ -257,7 +269,7 @@ class _BetterPlayerCupertinoControlsState
                     ? _controlsConfiguration.fullscreenDisableIcon
                     : _controlsConfiguration.fullscreenEnableIcon,
                 color: iconColor,
-                size: iconSize,
+                size: 30,
               ),
             ),
           ),
@@ -318,7 +330,7 @@ class _BetterPlayerCupertinoControlsState
               child: Icon(
                 _controlsConfiguration.overflowMenuIcon,
                 color: iconColor,
-                size: iconSize,
+                size: 30,
               ),
             ),
           ),
@@ -365,7 +377,7 @@ class _BetterPlayerCupertinoControlsState
                     ? _controlsConfiguration.muteIcon
                     : _controlsConfiguration.unMuteIcon,
                 color: iconColor,
-                size: iconSize,
+                size: 30,
               ),
             ),
           ),
@@ -390,7 +402,7 @@ class _BetterPlayerCupertinoControlsState
               ? _controlsConfiguration.pauseIcon
               : _controlsConfiguration.playIcon,
           color: iconColor,
-          size: barHeight * 0.6,
+          size: 30,
         ),
       ),
     );
@@ -482,17 +494,18 @@ class _BetterPlayerCupertinoControlsState
         left: marginSize,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          if (_controlsConfiguration.enableFullscreen)
-            _buildExpandButton(
-              backgroundColor,
-              iconColor,
-              barHeight,
-              iconSize,
-              buttonPadding,
-            )
-          else
-            const SizedBox(),
+          // if (_controlsConfiguration.enableFullscreen)
+          //   _buildExpandButton(
+          //     backgroundColor,
+          //     iconColor,
+          //     barHeight,
+          //     iconSize,
+          //     buttonPadding,
+          //   )
+          // else
+          //   const SizedBox(),
           const SizedBox(
             width: 4,
           ),

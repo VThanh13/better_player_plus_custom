@@ -204,6 +204,10 @@ class _BetterPlayerMaterialControlsState
                           controlsNotVisible, _onPlayerHide)
                     else
                       const SizedBox(),
+                    if (_controlsConfiguration.enableMute)
+                      _buildMuteButton(_controller)
+                    else
+                      const SizedBox(),
                     _buildMoreButton(),
                   ],
                 ),
@@ -268,6 +272,7 @@ class _BetterPlayerMaterialControlsState
         child: Icon(
           _controlsConfiguration.overflowMenuIcon,
           color: _controlsConfiguration.iconsColor,
+          size: 30,
         ),
       ),
     );
@@ -301,10 +306,10 @@ class _BetterPlayerMaterialControlsState
                         ? Expanded(child: _buildPosition())
                         : const SizedBox(),
                   const Spacer(),
-                  if (_controlsConfiguration.enableMute)
-                    _buildMuteButton(_controller)
-                  else
-                    const SizedBox(),
+                  // if (_controlsConfiguration.enableMute)
+                  //   _buildMuteButton(_controller)
+                  // else
+                  //   const SizedBox(),
                   if (_controlsConfiguration.enableFullscreen)
                     _buildExpandButton()
                   else
@@ -345,6 +350,7 @@ class _BetterPlayerMaterialControlsState
                     ? _controlsConfiguration.fullscreenDisableIcon
                     : _controlsConfiguration.fullscreenEnableIcon,
                 color: _controlsConfiguration.iconsColor,
+                size: 30,
               ),
             ),
           ),
@@ -535,6 +541,7 @@ class _BetterPlayerMaterialControlsState
                   ? _controlsConfiguration.muteIcon
                   : _controlsConfiguration.unMuteIcon,
               color: _controlsConfiguration.iconsColor,
+              size: 30,
             ),
           ),
         ),
@@ -555,6 +562,7 @@ class _BetterPlayerMaterialControlsState
               ? _controlsConfiguration.pauseIcon
               : _controlsConfiguration.playIcon,
           color: _controlsConfiguration.iconsColor,
+          size: 30,
         ),
       ),
     );
