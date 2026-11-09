@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:better_player_plus/src/configuration/better_player_controls_configuration.dart';
 import 'package:better_player_plus/src/controls/better_player_controls_state.dart';
 import 'package:better_player_plus/src/controls/better_player_cupertino_progress_bar.dart';
@@ -11,11 +12,7 @@ import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class BetterPlayerCupertinoControls extends StatefulWidget {
-  const new({
-    required this.onControlsVisibilityChanged,
-    required this.controlsConfiguration,
-    super.key,
-  });
+  const new({required this.onControlsVisibilityChanged, required this.controlsConfiguration, super.key});
 
   ///Callback used to send information if player bar is hidden or not
   final void Function(bool visbility) onControlsVisibilityChanged;
@@ -194,7 +191,7 @@ class _BetterPlayerCupertinoControlsState extends BetterPlayerControlsState<Bett
   Widget _buildLiveWidget() => Expanded(
     child: Text(
       _betterPlayerController!.translations.controlsLive,
-      style: TextStyle(color: _controlsConfiguration.liveTextColor, fontWeight: FontWeight.bold),
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
     ),
   );
 
