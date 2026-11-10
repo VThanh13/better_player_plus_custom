@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/controls/better_player_clickable_widget.dart';
 import 'package:better_player_plus/src/core/better_player_utils.dart';
@@ -35,7 +36,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget> extends State
     if (!(betterPlayerController?.isFullScreen ?? false)) {
       return child;
     }
-    return Padding(padding: MediaQuery.viewPaddingOf(context), child: child);
+    return child;
   }
 
   bool isVideoFinished(VideoPlayerValue? videoPlayerValue) =>

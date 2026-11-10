@@ -30,7 +30,7 @@ class VideoPlayerValue {
     this.isPlaying = false,
     this.isLooping = false,
     this.isBuffering = false,
-    this.volume = 1.0,
+    this.volume = 0,
     this.speed = 1.0,
     this.errorDescription,
     this.isPip = false,
@@ -178,10 +178,8 @@ class VideoPlayerValue {
 /// After [dispose] all further calls are ignored.
 class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
   /// Constructs a [VideoPlayerController] and creates video controller on platform side.
-  new({
-    this.bufferingConfiguration = const BetterPlayerBufferingConfiguration(),
-    bool autoCreate = true,
-  }) : super(VideoPlayerValue(duration: null)) {
+  new({this.bufferingConfiguration = const BetterPlayerBufferingConfiguration(), bool autoCreate = true})
+    : super(VideoPlayerValue(duration: null)) {
     if (autoCreate) {
       _create();
     }

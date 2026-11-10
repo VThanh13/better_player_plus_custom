@@ -149,18 +149,24 @@ class _BetterPlayerCupertinoControlsState extends BetterPlayerControlsState<Bett
           borderRadius: BorderRadius.circular(10),
           child: Container(
             height: barHeight,
-            decoration: BoxDecoration(color: backgroundColor),
+            decoration: const BoxDecoration(color: Colors.transparent),
             child: _betterPlayerController!.isLiveStream()
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      const SizedBox(width: 8),
                       if (_controlsConfiguration.enablePlayPause)
-                        _buildPlayPause(_controller!, iconColor, barHeight)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: _buildPlayPause(_controller!, iconColor, barHeight),
+                        )
                       else
                         const SizedBox(),
                       const SizedBox(width: 8),
-                      _buildLiveWidget(),
+                      // _buildLiveWidget(),
+                      if (_controlsConfiguration.enableFullscreen)
+                        _buildExpandButton(Colors.transparent, iconColor, barHeight, 28, 20)
+                      else
+                        const SizedBox(),
                     ],
                   )
                 : Row(
@@ -188,12 +194,12 @@ class _BetterPlayerCupertinoControlsState extends BetterPlayerControlsState<Bett
     );
   }
 
-  Widget _buildLiveWidget() => Expanded(
-    child: Text(
-      _betterPlayerController!.translations.controlsLive,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    ),
-  );
+  // Widget _buildLiveWidget() => Expanded(
+  //   child: Text(
+  //     _betterPlayerController!.translations.controlsLive,
+  //     style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+  //   ),
+  // );
 
   GestureDetector _buildExpandButton(
     Color backgroundColor,
@@ -380,29 +386,29 @@ class _BetterPlayerCupertinoControlsState extends BetterPlayerControlsState<Bett
       return const SizedBox();
     }
     final barHeight = topBarHeight * 0.8;
-    final iconSize = topBarHeight * 0.4;
+
     return Container(
       height: barHeight,
       margin: EdgeInsets.only(top: marginSize, right: marginSize, left: marginSize),
       child: Row(
         children: <Widget>[
-          if (_controlsConfiguration.enableFullscreen)
-            _buildExpandButton(backgroundColor, iconColor, barHeight, iconSize, buttonPadding)
-          else
-            const SizedBox(),
+          // if (_controlsConfiguration.enableFullscreen)
+          //   _buildExpandButton(backgroundColor, iconColor, barHeight, iconSize, buttonPadding)
+          // else
+          //   const SizedBox(),
           const SizedBox(width: 4),
           if (_controlsConfiguration.enablePip)
-            _buildPipButton(backgroundColor, iconColor, barHeight, iconSize, buttonPadding)
+            _buildPipButton(Colors.transparent, iconColor, barHeight, 26, buttonPadding)
           else
             const SizedBox(),
           const Spacer(),
           if (_controlsConfiguration.enableMute)
-            _buildMuteButton(_controller, backgroundColor, iconColor, barHeight, iconSize, buttonPadding)
+            _buildMuteButton(_controller, Colors.transparent, iconColor, barHeight, 26, buttonPadding)
           else
             const SizedBox(),
           const SizedBox(width: 4),
           if (_controlsConfiguration.enableOverflowMenu)
-            _buildMoreButton(_controller, backgroundColor, iconColor, barHeight, iconSize, buttonPadding)
+            _buildMoreButton(_controller, Colors.transparent, iconColor, barHeight, 26, buttonPadding)
           else
             const SizedBox(),
         ],

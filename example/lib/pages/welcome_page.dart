@@ -28,6 +28,7 @@ import 'package:better_player_example/pages/resolutions_page.dart';
 import 'package:better_player_example/pages/reusable_video_list/reusable_video_list_page.dart';
 import 'package:better_player_example/pages/rotation_and_fit_page.dart';
 import 'package:better_player_example/pages/subtitles_page.dart';
+import 'package:better_player_example/pages/test_live_page.dart';
 import 'package:better_player_example/pages/video_list/video_list_page.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
@@ -71,6 +72,9 @@ class _WelcomePageState extends State<WelcomePage> {
   );
 
   List<Widget> buildExampleElementWidgets() => [
+    _buildExampleElementWidget('Test Live player', () {
+      _navigateToPage(const TestLivePlayerPage());
+    }),
     _buildExampleElementWidget('Basic player', () {
       _navigateToPage(const BasicPlayerPage());
     }),

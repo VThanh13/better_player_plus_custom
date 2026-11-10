@@ -154,6 +154,14 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
       return null;
     }
 
+    const minMs = -8640000000000000; // giới hạn DateTime
+    const maxMs = 8640000000000000;
+
+    if (milliseconds < minMs || milliseconds > maxMs) {
+      // giá trị rác / overflow từ native -> bỏ qua
+      return null;
+    }
+
     return DateTime.fromMillisecondsSinceEpoch(milliseconds);
   }
 

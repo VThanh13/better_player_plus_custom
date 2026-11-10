@@ -7,7 +7,7 @@ import 'package:better_player_plus/src/controls/better_player_material_progress_
 import 'package:better_player_plus/src/controls/better_player_multiple_gesture_detector.dart';
 import 'package:better_player_plus/src/controls/better_player_progress_colors.dart';
 import 'package:better_player_plus/src/core/better_player_controller.dart';
-import 'package:better_player_plus/src/core/better_player_utils.dart';
+// import 'package:better_player_plus/src/core/better_player_utils.dart';
 import 'package:better_player_plus/src/video_player/video_player.dart';
 
 // Flutter imports:
@@ -173,6 +173,7 @@ class _BetterPlayerMaterialControlsState extends BetterPlayerControlsState<Bette
                       _buildPipButtonWrapperWidget(controlsNotVisible, _onPlayerHide)
                     else
                       const SizedBox(),
+                    if (_controlsConfiguration.enableMute) _buildMuteButton(_controller) else const SizedBox(),
                     _buildMoreButton(),
                   ],
                 ),
@@ -238,14 +239,14 @@ class _BetterPlayerMaterialControlsState extends BetterPlayerControlsState<Bette
               child: Row(
                 children: [
                   if (_controlsConfiguration.enablePlayPause) _buildPlayPause(_controller!) else const SizedBox(),
-                  if (_betterPlayerController!.isLiveStream())
-                    _buildLiveWidget()
-                  else if (_controlsConfiguration.enableProgressText)
-                    Expanded(child: _buildPosition())
-                  else
-                    const SizedBox(),
+                  // if (_betterPlayerController!.isLiveStream())
+                  //   _buildLiveWidget()
+                  // else if (_controlsConfiguration.enableProgressText)
+                  //   Expanded(child: _buildPosition())
+                  // else
+                  //   const SizedBox(),
                   const Spacer(),
-                  if (_controlsConfiguration.enableMute) _buildMuteButton(_controller) else const SizedBox(),
+
                   if (_controlsConfiguration.enableFullscreen) _buildExpandButton() else const SizedBox(),
                 ],
               ),
@@ -262,10 +263,10 @@ class _BetterPlayerMaterialControlsState extends BetterPlayerControlsState<Bette
     );
   }
 
-  Widget _buildLiveWidget() => Text(
-    _betterPlayerController!.translations.controlsLive,
-    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-  );
+  // Widget _buildLiveWidget() => Text(
+  //   _betterPlayerController!.translations.controlsLive,
+  //   style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+  // );
 
   Widget _buildExpandButton() => Padding(
     padding: const EdgeInsets.only(right: 12),
@@ -453,28 +454,28 @@ class _BetterPlayerMaterialControlsState extends BetterPlayerControlsState<Bette
     ),
   );
 
-  Widget _buildPosition() {
-    final position = _latestValue != null ? _latestValue!.position : Duration.zero;
-    final duration = _latestValue != null && _latestValue!.duration != null ? _latestValue!.duration! : Duration.zero;
+  // Widget _buildPosition() {
+  //   final position = _latestValue != null ? _latestValue!.position : Duration.zero;
+  //   final duration = _latestValue != null && _latestValue!.duration != null ? _latestValue!.duration! : Duration.zero;
 
-    return Padding(
-      padding: _controlsConfiguration.enablePlayPause
-          ? const EdgeInsets.only(right: 24)
-          : const EdgeInsets.symmetric(horizontal: 22),
-      child: RichText(
-        text: TextSpan(
-          text: BetterPlayerUtils.formatDuration(position),
-          style: TextStyle(fontSize: 10, color: _controlsConfiguration.textColor, decoration: TextDecoration.none),
-          children: <TextSpan>[
-            TextSpan(
-              text: ' / ${BetterPlayerUtils.formatDuration(duration)}',
-              style: TextStyle(fontSize: 10, color: _controlsConfiguration.textColor, decoration: TextDecoration.none),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  //   return Padding(
+  //     padding: _controlsConfiguration.enablePlayPause
+  //         ? const EdgeInsets.only(right: 24)
+  //         : const EdgeInsets.symmetric(horizontal: 22),
+  //     child: RichText(
+  //       text: TextSpan(
+  //         text: BetterPlayerUtils.formatDuration(position),
+  //         style: TextStyle(fontSize: 10, color: _controlsConfiguration.textColor, decoration: TextDecoration.none),
+  //         children: <TextSpan>[
+  //           TextSpan(
+  //             text: ' / ${BetterPlayerUtils.formatDuration(duration)}',
+  //             style: TextStyle(fontSize: 10, color: _controlsConfiguration.textColor, decoration: TextDecoration.none),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   void cancelAndRestartTimer() {
